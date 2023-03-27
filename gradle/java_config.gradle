@@ -1,0 +1,26 @@
+/**
+ * -----------------------------------------------
+ * DEFAULT CONFIGURATION OF JAVA COMPILATION TASKS
+ * -----------------------------------------------
+ */
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.release = 17
+    options.encoding = java.nio.charset.StandardCharsets.UTF_8.name()
+    options.debug = project.hasProperty('java.debug') ? project.property('java.debug') : true
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    jvmArgs += [
+        '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+        '--add-opens', 'java.base/java.io=ALL-UNNAMED',
+        '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+    ]
+}

@@ -1,0 +1,69 @@
+// -----------------------------------------------------------------------------
+// PLUGIN VERSION DEFINITIONS
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+
+    plugins {
+        id 'org.cyclonedx.bom' version '1.7.4'
+        id 'org.owasp.dependencycheck' version '8.2.1'
+        id 'net.researchgate.release' version '3.0.2'
+    }
+}
+
+
+// -----------------------------------------------------------------------------
+// DEFINE PROJECT STRUCTURE
+
+rootProject.name = 'auderis-infra'
+
+// Main code
+
+// Documentation
+
+// Development and testing
+
+
+// -----------------------------------------------------------------------------
+// CENTRALIZED REPOSITORY DEFINITIONS
+
+dependencyResolutionManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    // Central definition of library versions
+    versionCatalogs {
+        libs {
+            // ============
+            // Test support
+            version('junit', '5.9.2')
+            library('junit-api', 'org.junit.jupiter', 'junit-jupiter-api').versionRef('junit')
+            library('junit-engine', 'org.junit.jupiter', 'junit-jupiter-engine').versionRef('junit')
+            library('junit-params', 'org.junit.jupiter', 'junit-jupiter-params').versionRef('junit')
+            library('hamcrest', 'org.hamcrest', 'hamcrest').version('2.2')
+            bundle('test-platform', [ 'junit-api', 'junit-params', 'hamcrest' ])
+            bundle('test-platform-runtime', [ 'junit-engine' ])
+        }
+    }
+}
+
+
+// -----------------------------------------------------------------------------
+// ALLOW EXTERNAL BUILD DIRECTORY (e.g for CI/CD environments)
+
+gradle.projectsLoaded {
+    def separateBuildBaseDir = gradle.rootProject.properties.separateBuildDir ?: System.env.SEPARATE_BUILD_DIR
+    if (null != separateBuildBaseDir) {
+        final java.nio.file.Path basePath = java.nio.file.Path.of(separateBuildBaseDir)
+        gradle.rootProject.allprojects {
+            final java.nio.file.Path bp = basePath.resolve(project.name).toAbsolutePath()
+            logger.warn("Build path override for ${it}: using ${bp}");
+            buildDir = bp
+        }
+    }
+}
