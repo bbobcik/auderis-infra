@@ -12,8 +12,8 @@ java {
 }
 
 tasks.withType(JavaCompile) {
-    it.sourceCompatibility = JavaVersion.VERSION_17
-    it.targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
     options.release = 17
     options.encoding = java.nio.charset.StandardCharsets.UTF_8.name()
     options.debug = project.hasProperty('java.debug') ? project.property('java.debug') : true

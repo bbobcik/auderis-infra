@@ -1,0 +1,30 @@
+/**
+ * -----------------------------------------------------------------------------
+ * PRODUCE SOFTWARE BILL OF MATERIALS (SBOM) AND INCLUDE IT IN THE JAR
+ * Add the following plugin declarations to a project for these settings
+ * to take effect:
+ *   id 'org.cyclonedx.bom'
+ *   id 'include-sbom'
+ * -----------------------------------------------------------------------------
+ */
+
+cyclonedxBom {
+    onlyIf { providers.gradleProperty('release').present }
+
+    schemaVersion = '1.4'
+    projectType = 'library'
+    includeConfigs = ['runtimeClasspath']
+    includeBomSerialNumber = false
+    includeLicenseText = false
+
+    destination = file('build/reports')
+    outputName = 'sbom'
+    outputFormat = 'xml'
+}
+
+
+jar {
+    metaInf {
+        from(tasks.cyclonedxBom.outputs)
+    }
+}
