@@ -14,6 +14,10 @@ pluginManagement {
     }
 }
 
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.4.0'
+}
+
 
 // -----------------------------------------------------------------------------
 // DEFINE PROJECT STRUCTURE
@@ -21,6 +25,7 @@ pluginManagement {
 rootProject.name = 'auderis-infra'
 
 // Main code
+include 'infra-annotation'
 
 // Documentation
 
