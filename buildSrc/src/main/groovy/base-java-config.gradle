@@ -1,0 +1,36 @@
+/**
+ * -----------------------------------------------------------------------------
+ * DEFAULT CONFIGURATION OF JAVA COMPILATION TASKS
+ * Add `id 'base-java-config'` to a project for these settings to take effect.
+ * -----------------------------------------------------------------------------
+ */
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.withType(JavaCompile) {
+    it.sourceCompatibility = JavaVersion.VERSION_17
+    it.targetCompatibility = JavaVersion.VERSION_17
+    options.release = 17
+    options.encoding = java.nio.charset.StandardCharsets.UTF_8.name()
+    options.debug = project.hasProperty('java.debug') ? project.property('java.debug') : true
+    options.warnings = true
+}
+
+tasks.withType(Test) {
+    final def skipTests = providers.gradleProperty('skipTests')
+    onlyIf('skipTests not present') {
+        final def blockFlag = skipTests.getOrElse('false').toLowerCase()
+        return ['true', 'yes', ''].contains(blockFlag)
+    }
+
+    useJUnitPlatform()
+    jvmArgs += [
+            '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+            '--add-opens', 'java.base/java.io=ALL-UNNAMED',
+            '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+    ]
+}

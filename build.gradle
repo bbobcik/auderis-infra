@@ -18,9 +18,4 @@ subprojects {subProject ->
         preserveFileTimestamps = false
     }
 
-    // Basic initialization of Java subprojects
-    subProject.plugins.withType(JavaPlugin) {
-        subProject.apply from: rootProject.file('gradle/java_config.gradle')
-    }
-
 }
