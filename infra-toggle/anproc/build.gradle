@@ -1,0 +1,34 @@
+plugins {
+    id 'java-library'
+    id 'java-test-fixtures'
+    id 'maven-publish'
+    id 'org.cyclonedx.bom'
+
+    id 'base-java-config'
+    id 'include-sbom'
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+
+dependencies {
+    testImplementation libs.bundles.testPlatform
+    testRuntimeOnly libs.bundles.testPlatformRuntime
+
+    testImplementation (libs.googleTestCompile) {
+        exclude group: 'junit', module: 'junit'
+    }
+    testRuntimeOnly project(':infra-toggle:annotation')
+
+}

@@ -36,4 +36,19 @@ public @interface FeatureMethod {
      */
     boolean flagValue();
 
+    /**
+     * Description of the feature toggle, that should explain its purpose.
+     * <p>
+     * If the description is associated by only a single method annotation
+     * (preferably the one with {@code flagValue=true}), it will be used as-is.
+     * This value may be used for automatic generation of feature documentation.
+     * <p>
+     * If both methods' annotation contain a description, the description is
+     * unified into a common text with two paragraphs, one for the legacy code
+     * ({@code flagValue=false}) and one for the new feature, in this order.
+     *
+     * @return optional description
+     */
+    String description() default "";
+
 }

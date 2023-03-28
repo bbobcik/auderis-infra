@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Documented
 @FeatureToggleInstrumentation
-public @interface DynamicFeatureToggle {
+public @interface FeatureToggleObserver {
 
     /**
      * One or more feature toggle names that are observed by the annotated method.
