@@ -8,6 +8,7 @@
 
 ## Simple tools
   * [ ] Helper that maintains series of `AutoCloseable` objects
+  * [X] Provider of string separators (used when constructing a list piece-by-piece) 
 
 ## Logging
   * [ ] Fluent logging API
