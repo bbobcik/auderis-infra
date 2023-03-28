@@ -27,7 +27,7 @@ rootProject.name = 'auderis-infra'
 // Main code
 include 'infra-annotation'
 include 'infra-toggle:annotation'
-include 'infra-toggle:anproc'
+include 'infra-toggle:instrument'
 include 'infra-tools'
 
 // Documentation

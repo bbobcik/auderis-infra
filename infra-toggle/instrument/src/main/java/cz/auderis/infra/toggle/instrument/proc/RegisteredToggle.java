@@ -1,4 +1,4 @@
-package cz.auderis.infra.toggle.processor;
+package cz.auderis.infra.toggle.instrument.proc;
 
 import javax.lang.model.element.TypeElement;
 import java.util.List;
