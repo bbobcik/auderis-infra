@@ -1,8 +1,9 @@
-package cz.auderis.infra.toggle.processor;
+package cz.auderis.infra.toggle.instrument.proc;
 
 import com.google.testing.compile.Compilation;
 import com.google.testing.compile.Compiler;
 import com.google.testing.compile.JavaFileObjects;
+import cz.auderis.infra.toggle.instrument.proc.FeatureToggleProcessor;
 import org.junit.jupiter.api.BeforeEach;
 
 import javax.tools.JavaFileObject;

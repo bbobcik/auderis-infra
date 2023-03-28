@@ -1,4 +1,4 @@
-package cz.auderis.infra.toggle.processor;
+package cz.auderis.infra.toggle.instrument.proc;
 
 /**
  * Created on 28.3.2023.

@@ -1,6 +1,5 @@
-package cz.auderis.infra.toggle.processor;
+package cz.auderis.infra.toggle.instrument.proc;
 
-import com.google.testing.compile.JavaFileObjects;
 import org.junit.jupiter.api.Test;
 
 import static com.google.testing.compile.CompilationSubject.assertThat;

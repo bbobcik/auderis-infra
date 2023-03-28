@@ -1,23 +1,20 @@
-package cz.auderis.infra.toggle.processor;
+package cz.auderis.infra.toggle.instrument.proc;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.google.testing.compile.CompilationSubject.assertThat;
 
-public class MixedAnnotationTest extends CommonProcessorTest {
+public class FeatureMethodTest extends CommonProcessorTest {
 
     @Test
-    void shouldProcessMixedFeatureAnnotations() {
+    void shouldProcessFeatureMethodAnnotation() {
         // Given
         addSource("TestClass", /* language=Java */ """
                 package cz.auderis.test;
-                import cz.auderis.infra.toggle.FeatureToggle;
                 import cz.auderis.infra.toggle.FeatureMethod;
                 public class TestClass {
-                    @FeatureToggle(name="feature1")
-                    private boolean isFeature1Enabled() {
-                        return false;
-                    }
                     @FeatureMethod(name="feature2", flagValue=false)
                     private String getOldValue(int x) {
                         return "legacy";
@@ -34,26 +31,27 @@ public class MixedAnnotationTest extends CommonProcessorTest {
         assertThat(compilation).succeededWithoutWarnings();
     }
 
-    @Test
-    void shouldRejectMultipleToggleAnnotation() {
+
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void shouldRejectSingleToggleMethodAnnotation(boolean flagValue) {
         // Given
         addSource("TestClass", /* language=Java */ """
                 package cz.auderis.test;
-                import cz.auderis.infra.toggle.FeatureToggle;
                 import cz.auderis.infra.toggle.FeatureMethod;
                 public class TestClass {
-                    @FeatureToggle(name="feature1")
-                    @FeatureMethod(name="feature2", flagValue=false)
+                    @FeatureMethod(name="feature2", flagValue=%s)
                     private boolean isFeature1Enabled() {
                         return false;
                     }
                 }
-                """);
+                """.formatted(flagValue));
         // When
         final var compilation = compileSources();
         // Then
         assertThat(compilation).failed();
-        assertThat(compilation).hadErrorContaining("Incompatible feature-related annotations");
+        assertThat(compilation).hadErrorContaining("Incompatible feature-relate annotations");
     }
+
 
 }
