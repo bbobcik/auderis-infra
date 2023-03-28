@@ -26,6 +26,7 @@ rootProject.name = 'auderis-infra'
 
 // Main code
 include 'infra-annotation'
+include 'infra-tools'
 
 // Documentation
 
@@ -51,8 +52,8 @@ dependencyResolutionManagement {
             library('junit-engine', 'org.junit.jupiter', 'junit-jupiter-engine').versionRef('junit')
             library('junit-params', 'org.junit.jupiter', 'junit-jupiter-params').versionRef('junit')
             library('hamcrest', 'org.hamcrest', 'hamcrest').version('2.2')
-            bundle('test-platform', [ 'junit-api', 'junit-params', 'hamcrest' ])
-            bundle('test-platform-runtime', [ 'junit-engine' ])
+            bundle('testPlatform', [ 'junit-api', 'junit-params', 'hamcrest' ])
+            bundle('testPlatformRuntime', [ 'junit-engine' ])
         }
     }
 }
