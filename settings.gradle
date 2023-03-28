@@ -27,6 +27,7 @@ rootProject.name = 'auderis-infra'
 // Main code
 include 'infra-annotation'
 include 'infra-toggle:annotation'
+include 'infra-toggle:anproc'
 include 'infra-tools'
 
 // Documentation
@@ -56,6 +57,7 @@ dependencyResolutionManagement {
             library('junit-engine', 'org.junit.jupiter', 'junit-jupiter-engine').versionRef('junit')
             library('junit-params', 'org.junit.jupiter', 'junit-jupiter-params').versionRef('junit')
             library('hamcrest', 'org.hamcrest', 'hamcrest').version('2.2')
+            library('googleTestCompile', 'com.google.testing.compile', 'compile-testing').version('0.21.0')
             bundle('testPlatform', [ 'junit-api', 'junit-params', 'hamcrest' ])
             bundle('testPlatformRuntime', [ 'junit-engine' ])
         }
