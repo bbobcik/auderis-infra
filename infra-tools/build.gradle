@@ -23,6 +23,8 @@ publishing {
 
 
 dependencies {
+    compileOnly libs.jetBrainsAnnotation
+
     testImplementation libs.bundles.testPlatform
     testRuntimeOnly libs.bundles.testPlatformRuntime
 }

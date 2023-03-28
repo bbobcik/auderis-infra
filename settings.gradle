@@ -45,6 +45,9 @@ dependencyResolutionManagement {
     // Central definition of library versions
     versionCatalogs {
         libs {
+            // =============
+            // Code quality support
+            library('jetBrainsAnnotation',  'org.jetbrains', 'annotations').version('24.0.1')
             // ============
             // Test support
             version('junit', '5.9.2')
