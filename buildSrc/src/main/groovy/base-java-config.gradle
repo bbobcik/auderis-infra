@@ -24,7 +24,7 @@ tasks.withType(Test) {
     final def skipTests = providers.gradleProperty('skipTests')
     onlyIf('skipTests not present') {
         final def blockFlag = skipTests.getOrElse('false').toLowerCase()
-        return ['true', 'yes', ''].contains(blockFlag)
+        return !['true', 'yes', ''].contains(blockFlag)
     }
 
     useJUnitPlatform()

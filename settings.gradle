@@ -26,6 +26,9 @@ rootProject.name = 'auderis-infra'
 
 // Main code
 include 'infra-annotation'
+include 'infra-toggle:annotation'
+include 'infra-toggle:instrument'
+include 'infra-tools'
 
 // Documentation
 
@@ -44,6 +47,9 @@ dependencyResolutionManagement {
     // Central definition of library versions
     versionCatalogs {
         libs {
+            // =============
+            // Code quality support
+            library('jetBrainsAnnotation',  'org.jetbrains', 'annotations').version('24.0.1')
             // ============
             // Test support
             version('junit', '5.9.2')
@@ -51,8 +57,9 @@ dependencyResolutionManagement {
             library('junit-engine', 'org.junit.jupiter', 'junit-jupiter-engine').versionRef('junit')
             library('junit-params', 'org.junit.jupiter', 'junit-jupiter-params').versionRef('junit')
             library('hamcrest', 'org.hamcrest', 'hamcrest').version('2.2')
-            bundle('test-platform', [ 'junit-api', 'junit-params', 'hamcrest' ])
-            bundle('test-platform-runtime', [ 'junit-engine' ])
+            library('googleTestCompile', 'com.google.testing.compile', 'compile-testing').version('0.21.0')
+            bundle('testPlatform', [ 'junit-api', 'junit-params', 'hamcrest' ])
+            bundle('testPlatformRuntime', [ 'junit-engine' ])
         }
     }
 }

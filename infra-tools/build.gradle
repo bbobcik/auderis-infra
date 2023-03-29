@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+    id 'java-test-fixtures'
+    id 'maven-publish'
+    id 'org.cyclonedx.bom'
+
+    id 'base-java-config'
+    id 'include-sbom'
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+
+dependencies {
+    compileOnly libs.jetBrainsAnnotation
+
+    testImplementation libs.bundles.testPlatform
+    testRuntimeOnly libs.bundles.testPlatformRuntime
+}

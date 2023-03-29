@@ -8,6 +8,7 @@
 
 ## Simple tools
   * [ ] Helper that maintains series of `AutoCloseable` objects
+  * [X] Provider of string separators (used when constructing a list piece-by-piece) 
 
 ## Logging
   * [ ] Fluent logging API
@@ -16,5 +17,13 @@
         level is logged
 
 ## Feature Toggle
-  * [ ] Annotation-based feature toggle
-  * [ ] Feature toggle code instrumentation
+  * [X] Annotation-based feature toggle logic
+  * [ ] Build-time code instrumentation of feature toggles
+    * [ ] Dynamic feature toggle logic
+    * [ ] Generation of feature toggle manifest
+    * [ ] Prevent compilation of code with expired feature toggles
+    * [ ] Documentation of feature toggles
+  * [ ] Run-time feature management
+    * [ ] JMX interface
+    * [ ] Dump initial state of all feature toggles at startup
+    * [ ] Monitor which feature toggles were accessed
