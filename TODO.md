@@ -1,7 +1,7 @@
 # Project roadmap
 
 ## Semantic annotations
-  * [ ] Annotations that define (and document) how the annotated element
+  * [X] Annotations that define (and document) how the annotated element
         interfaces with the outer world (e.g. user-oriented endpoints, 
         filesystem interfaces)
   * [ ] Test qualifiers (e.g. regression tests, smoke tests)

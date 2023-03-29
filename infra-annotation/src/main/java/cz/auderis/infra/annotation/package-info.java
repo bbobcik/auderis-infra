@@ -11,8 +11,15 @@
  *     </li>
  *     <li>
  *         Code verification frameworks (e.g. ArchUnit) may use the annotations
- *         to assert appropriate architectural constraints.
+ *         to assert appropriate architectural constraints;
  *     </li>
+ *     <li>
+ *         Specialized tools may use the annotations to generate documentation.
+ *         E.g. they may draw a graph of application components of various types,
+ *         assemble tables of API endpoints, etc.
  * </ul>
+ *
+ * @author Boleslav Bobcik
+ * @since 2023
  */
 package cz.auderis.infra.annotation;
