@@ -10,6 +10,11 @@
  *         these annotations as injection qualifiers or candidates for interception;
  *     </li>
  *     <li>
+ *         Build-time or runtime code instrumentation may use the annotations
+ *         to generate and validate performance metrics. They may for example
+ *         decorate annotated methods with Java Flight Recorder event generation.
+ *     </li>
+ *     <li>
  *         Code verification frameworks (e.g. ArchUnit) may use the annotations
  *         to assert appropriate architectural constraints;
  *     </li>
